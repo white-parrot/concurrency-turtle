@@ -15,6 +15,7 @@ import java.util.List;
 public class SimpleMultiExecutor {
 
 	private final List<? extends Runnable> workers;
+	private int i = 13;
 
 	/* Constructor to Set List of Runnable Tasks */
 	public SimpleMultiExecutor(List<? extends Runnable> workers) {
@@ -27,7 +28,22 @@ public class SimpleMultiExecutor {
 			if (worker instanceof Thread) {
 				((Thread) worker).start();
 			} else {
+				
 				worker.run();
+				
+				/* Proper Way to Run Runnable Tasks*/
+				Thread t = new Thread(worker);
+				t.setName("");
+			}
+		});
+
+
+		/* Proper way to Run Runnable Tasks */
+		workers.forEach((worker) -> {
+			if(worker instanceof Runnable) {
+				Thread t = new Thread(worker);
+				t.setName("Runnable Thread - "+ i++);
+				t.start();
 			}
 		});
 	}
