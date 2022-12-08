@@ -1,5 +1,11 @@
 package com.runtimeturtle.concurrency.basicthread;
 
+/**
+ * A Class for Basic Thread Example
+ * 
+ * @author runtime-turtle
+ *
+ */
 public class BasicThread {
 
 	public static void main(String[] args) {
